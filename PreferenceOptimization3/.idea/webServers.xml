@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="559b8137-3396-4e3e-9562-d4a4933b23ad" name="mmaccarini@chronos.idsia.ch">
+        <fileTransfer rootFolder="/home/mmaccarini/pyMarco" accessType="SFTP" host="chronos.idsia.ch" port="22" sshConfigId="93d5ea53-37ac-4ee0-b487-b46d6e710862" sshConfig="mmaccarini@chronos.idsia.ch:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

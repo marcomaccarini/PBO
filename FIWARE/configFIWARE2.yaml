@@ -1,0 +1,22 @@
+entities_url: http://localhost:1026/ngsi-ld/v1/entities
+subscriptions_url: http://localhost:1026/ngsi-ld/v1/subscriptions
+header_json: {Content-Type: application/ld+json}
+entities:
+  - id: urn:ngsi-ld:Process:PBO
+    type: Process
+    workParameters: {"type": "Property", "value": {"message": " ", "controlled": []}}
+    Status: {"type": "Property", "value": "pending", "observedAt": "2020-12-01T11:23:19Z"}
+    "@context": [
+        https://smartdatamodels.org/context.jsonld,
+        https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld
+    ]
+subscriptions:
+  - description: Notify me when PBO changes its status (ready for input/error/running)
+    type: "Subscription"
+    entities: [{"type": "Process"}]
+    watchedAttributes: ["status"]
+    notification: {"attributes": ["status"], "format": "keyValues", "endpoint": {"uri": "http://host.docker.internal:5001/send/", "accept": "application/json"}}
+    "@context": [
+        https://smartdatamodels.org/context.jsonld,
+        https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld
+    ]

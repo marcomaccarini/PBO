@@ -1,0 +1,7 @@
+FUNCTION EVAL #0: 
+def point_eval_out1(point):
+    x1 = point[0]
+    x2 = point[1]
+    r = 2 * x1 ** 2 - 1.05 * x1 ** 4 + x1 ** 6 / 6 + x1 * x2 + x2 ** 2
+    return r
+

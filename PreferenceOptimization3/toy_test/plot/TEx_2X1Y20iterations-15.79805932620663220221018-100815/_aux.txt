@@ -1,0 +1,4 @@
+Len:25
+Dim:2
+InitSamples:5
+EndExplore:5

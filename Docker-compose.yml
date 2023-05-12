@@ -1,0 +1,12 @@
+version: '3'
+services:
+  pbo:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: pbo:latest
+    container_name: pbo
+    command: sh -c "python ./index.py -p 5000"
+    ports:
+      - "5000:5000"
