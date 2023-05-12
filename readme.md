@@ -21,7 +21,7 @@ docker-compose up
 ```
 
 ## Testing the connection to PBO
-Test connection going into   [http://localhost:5000/index](http://localhost:5000/index), the service will return the message "it works".
+Test connection going into   [http://localhost:5000/try](http://localhost:5000/try), the service will return the message "it works".
 
 ## Testing the optimization
 To test the optimization you need the following elements.
@@ -124,6 +124,169 @@ This parameter can assume value between 0 and 10. The higher this value is, the 
 "delta": 3
 ```
 
-### 7. the entire json file to post
-It possible to see the entire json message in  [example.json](example.json)
+### 7. the entire task to post
+Make a patch call with post man.
+Url: http://localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Task:taskPBO/attrs
+Body - Raw - Json:
 
+```console
+{
+    "status": {
+        "value": {
+            "fvarsX": [
+                {
+                    "name": "t1",
+                    "type": "continuous",
+                    "domain": [
+                        -20000.0,
+                        200.0
+                    ]
+                },
+                {
+                    "name": "ciao2",
+                    "type": "continuous",
+                    "domain": [
+                        -200.0,
+                        200.0
+                    ]
+                }
+            ],
+            "fvarsY": [
+                {
+                    "name": "out1",
+                    "type": "continuous",
+                    "domain": []
+                }
+            ],
+            "acquisition_optimizer_type": "lbfgsb",
+            "x": [
+                [
+                    -10,
+                    1
+                ],
+                [
+                    44,
+                    1
+                ],
+                [
+                    -16,
+                    1
+                ],
+                [
+                    -4,
+                    1
+                ],
+                [
+                    10,
+                    1
+                ],
+                [
+                    -160,
+                    1
+                ],
+                [
+                    60,
+                    1
+                ],
+                [
+                    2,
+                    1
+                ],
+                [
+                    -2.34,
+                    1
+                ],
+                [
+                    2.75,
+                    1
+                ],
+                [
+                    0.20,
+                    1
+                ],
+                [
+                    2.27,
+                    1
+                ],
+                [
+                    0.2039585,
+                    1
+                ]
+            ],
+            "b_in": [
+                [
+                    0,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1,
+                    1
+                ],
+                [
+                    3,
+                    2,
+                    1
+                ],
+                [
+                    3,
+                    4,
+                    1
+                ],
+                [
+                    3,
+                    5,
+                    1
+                ],
+                [
+                    3,
+                    6,
+                    1
+                ],
+                [
+                    7,
+                    6,
+                    1
+                ],
+                [
+                    7,
+                    8,
+                    1
+                ],
+                [
+                    7,
+                    9,
+                    1
+                ],
+                [
+                    10,
+                    7,
+                    1
+                ],
+                [
+                    10,
+                    11,
+                    1
+                ],
+                [
+                    10,
+                    12,
+                    1
+                ]
+            ],
+            "b_best": [
+                1
+            ],
+            "boolean_test": "True",
+            "exploration": "True",
+            "delta": 34
+        }
+    }
+}
+```
+
+### 8. Get the result
+Make a get call with post man.
+Url: http://host.docker.internal:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO
+The result of the task is stored in "Status"."Value"."x_next"
