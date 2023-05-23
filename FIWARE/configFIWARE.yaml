@@ -1,13 +1,6 @@
-entities_url: http://localhost:1026/ngsi-ld/v1/entities #as FIWARE is running this is URL from where we can access information about entities
-#of course ip adress and port may change
-subscriptions_url: http://localhost:1026/ngsi-ld/v1/subscriptions #from there we take information about our subscriptions
-header_json: {Content-Type: application/ld+json} #This header is needed by FIWARE to be able to correctly respond
-
-#Entities are in 100% managed by FIWARE we can only change or acess them by sending 
-#HTTP request to the FIWARE and we need to know informations like: id, type and attributes of entity in advance
-#otherwise FIWARE will just reject our request
-#things like id and type has to be defined for FIWARE otherwise it will do it automatically rest are just specific parameters
-#of our entity. So basically we can create as many entities as we want but to communicate with them we need their id's and types in advance
+entities_url: http://localhost:1026/ngsi-ld/v1/entities
+subscriptions_url: http://localhost:1026/ngsi-ld/v1/subscriptions
+header_json: {Content-Type: application/ld+json}
 entities:
   - id: urn:ngsi-ld:Process:PBO
     type: Process
@@ -17,16 +10,6 @@ entities:
         https://smartdatamodels.org/context.jsonld,
         https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld
     ]
-
-#  - id: urn:ngsi-ld:Device:Bosch:camera1
-#    type: Device
-#    controlledProperty: {"type": "Property", "value": ["TemplatePath"]}
-#    value: {"type": "Property", "value": "../imgs/template/01.jpg", "observedAt": "2020-12-01T11:23:19Z"}
-#    pcb_path: {value: "../imgs/control/01_01.jpg", type: "Property"}
-#    "@context": [
-#        https://smartdatamodels.org/context.jsonld,
-#        https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld
-#    ]
 
   - id: urn:ngsi-ld:Task:taskPBO
     type: Task
@@ -42,25 +25,13 @@ entities:
           "delta":"",
           "controlled": []}
     , "observedAt": "2020-12-01T11:23:19Z"}
-    #workParameters:  {"type": "Property", "value": {
-    #  "fvarsX": [],
-    #  "fvarsY": [],
-    #  "acquisition_optimizer_type": "",
-    #  "x": [],
-    #  "b_in":[],
-    #  "b_best": [],
-    #  "delta":"",
-    #  "controlled": []}}
     outputParameters:  {"type": "Property", "value": {"materialsAlreadyTransported": 0,"percentageCompleted": 0}}
     params: {value: "../imgs/control/01_01.jpg", type: "Property"}
     "@context": [
       https://smartdatamodels.org/context.jsonld,
       https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld
     ]
-    #as otherwise subscriptions wouldn't be send
 
-#  So when something change in conditioned parameters in entity for which subscription is defined then
-#  POST request is send on the given url containing provided attributed
 subscriptions:
   - description: Notify me when a task is made
     type: "Subscription"
@@ -71,7 +42,3 @@ subscriptions:
         https://smartdatamodels.org/context.jsonld,
         https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld
     ]
-
-
-
-

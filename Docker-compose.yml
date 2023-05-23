@@ -10,3 +10,5 @@ services:
     command: sh -c "python ./index.py -p 5000"
     ports:
       - "5000:5000"
+    networks:
+      - default
