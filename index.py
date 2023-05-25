@@ -19,6 +19,7 @@ import json
 import sys
 
 app = Flask(__name__)
+fiware_url = os.getenv("FIWARE_URL", "127.0.0.1")
 
 def print_anywhere(message=""):
     print(message,file=sys.stderr)
