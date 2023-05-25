@@ -16,10 +16,12 @@ print(os.getcwd())
 print(os.listdir())
 
 import json
+import sys
 
 app = Flask(__name__)
 
-
+def print_anywhere(message=""):
+    print(message,file=sys.stderr)
 
 @app.route('/try')
 def prova():
@@ -29,9 +31,9 @@ def prova():
 @app.route('/task', methods=['POST', 'FETCH','GET'])
 def get_x_next():
     if request.method=="GET":
-        print("Get method received")
-    print("Task received.")
-    print(request.get_json())
+        print_anywhere("Get method received")
+    print_anywhere("Task received.")
+    print_anywhere(request.get_json())
     request_data = request.get_json()['data'][0]['status']
 
     set_status("running")
@@ -53,7 +55,7 @@ def get_x_next():
         "x_next": x_next.tolist()
     }
     # return jsonify(resp)
-    print("resp" + str(resp))
+    print_anywhere("resp" + str(resp))
     return resp
 
 
