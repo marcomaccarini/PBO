@@ -1,13 +1,17 @@
 import time
 import json
 import requests
+import sys
+
+def print_anywhere(message=""):
+    print(message,file=sys.stderr)
 
 
 def set_status(message="", x_next=[], fiware_url="127.0.0.1"):
     timestamp = str(time.time())
     # http://host.docker.internal:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO
-    final_url = "http://%s:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO/attrs"%(fiware_url)
-    # final_url = "http://host.docker.internal:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO/attrs"
+    #final_url = "http://%s:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO/attrs"%(fiware_url)
+    final_url = "http://host.docker.internal:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO/attrs"
     header = {"Content-Type": "application/ld+json"}
 
     update = {
@@ -26,9 +30,9 @@ def set_status(message="", x_next=[], fiware_url="127.0.0.1"):
     try:
         resp = requests.patch(final_url, headers=header, data=update_json)
     except requests.exceptions.ConnectionError:
-        print("Exception occurred")
-        # print(resp.status_code)
-    print("Status updated.")
+        print_anywhere("Exception occurred")
+        print_anywhere(resp)
+    print_anywhere("Status updated.")
 
 #
 # if __name__ == '__main__':

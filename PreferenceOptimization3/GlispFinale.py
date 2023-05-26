@@ -22,7 +22,6 @@ from PreferenceOptimization3.optimizer.NelderMead import NelderMead
 from PreferenceOptimization3.acquisition.Preferences import Preferences
 from numpy import linalg as LA
 
-
 class GLISpFinale(object):
     def __init__(self, fvars_x, fvars_y, express_preference=None, express_class_preference=None, objectives=None,
                  objectivesFunctions=None,
