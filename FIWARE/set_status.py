@@ -3,10 +3,10 @@ import json
 import requests
 
 
-def set_status(message="", x_next=[]):
+def set_status(message="", x_next=[], fiware_url="127.0.0.1"):
     timestamp = str(time.time())
     # http://host.docker.internal:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO
-    final_url = "http://127.0.0.1:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO/attrs"
+    final_url = "http://%s:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO/attrs"%(fiware_url)
     # final_url = "http://host.docker.internal:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO/attrs"
     header = {"Content-Type": "application/ld+json"}
 

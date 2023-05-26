@@ -10,6 +10,7 @@ WORKDIR /PBO_rest
 
 ENV FLASK_APP=main/index.py
 ENV FLASK_RUN_HOST=127.0.0.1
+ENV FIWARE_URL=fiware-orion-ld
 ENV PATH /opt/conda/envs/pbo_rest/bin:$PATH
 RUN /bin/bash -c "source activate pbo_rest"
 EXPOSE 5000
