@@ -15,13 +15,20 @@ These two scripts must returns code 201.
 # PBO 
 
 ```console
+cd ..
 docker-compose build --no-cache
 docker-compose up
-
 ```
 
 ## Testing the connection to PBO
+### Browser side
 Test connection going into   [http://localhost:5000/try](http://localhost:5000/try), the service will return the message "it works".
+### Postman side
+It is possible testing the connection also with [postman](https://www.postman.com/downloads/ ):
+- Method: get
+- URL: http://localhost:5000/try
+
+![alt text](media/postman1.png "Postman example for testing PBO connection")
 
 ## Testing the optimization
 To test the optimization you need the following elements.
@@ -125,8 +132,9 @@ This parameter can assume value between 0 and 10. The higher this value is, the 
 ```
 
 ### 7. the entire task to post
-Make a patch call with post man.
-Url: http://localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Task:taskPBO/attrs
+Make a patch call with postman:
+- Method: path
+- URL: http://localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Task:taskPBO/attrs
 Body - Raw - Json:
 
 ```console
@@ -286,7 +294,38 @@ Body - Raw - Json:
 }
 ```
 
+![alt text](media/postman2.png "Postman example for optimize points")
+
+
 ### 8. Get the result
-Make a get call with post man.
-Url: http://host.docker.internal:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO
+Make a get call with post man:
+- Method: get
+- URL: http://host.docker.internal:1026/ngsi-ld/v1/entities/urn:ngsi-ld:Process:PBO
+
 The result of the task is stored in "Status"."Value"."x_next"
+
+![alt text](media/postman3.png "Postman example for read the next point to be tested")
+
+### 9. Example of interaction with code
+[example_rest](example_rest.py) shows an example of interaction between user and PBO.
+To do that, a hidden function is simulated :`f(x,y) = x_1^2+x_2^2`, defined in `R^2 \in {-200,200; -200,200 }`. This function has the optimum point in `x_opt = [0,0]`.
+To start the optmization, initial points and their comparison are needed, in this case:
+`x_0  = 34,32. f(x_0) = 2180.
+x_1  = 12,65. f(x_1) = 4369.
+x_2  = 8, 43. f(x_2) = 1913.
+x_3  = 12,12. f(x_3) = 288.
+x_4  = 42,24. f(x_4) = 2340.
+x_5  = 18,30. f(x_5) = 1224.
+`
+From this point, it is possible to say that 
+- x_0 is better than x_1 , because `f(x_0) < f(x_1)`.
+- x_2 is better than x_1 , because `f(x_2) < f(x_1)`.
+- x_3 is better than x_2 , because `f(x_3) < f(x_2)`.
+- x_3 is better than x_4 , because `f(x_3) < f(x_4)`.
+- x_3 is better than x_5 , because `f(x_3) < f(x_5)`.
+
+It is possible also expressing the best point seen so far: x_3.
+
+All these information will be sent to the taskPBO using the json file in [ut](ut.py) from line 75.
+
+

@@ -51,7 +51,7 @@ def get_values(request_data):
     x = request_data['x']
     b_in = request_data['b_in']
     b_best = request_data['b_best']
-    #exploration = bool(request_data['exploration'])
+    # exploration = bool(request_data['exploration'])
     delta = float(request_data['delta'])
     return acquisition_optimizer_type, b_best, b_in, fvarsX, fvarsY, x, delta
 
@@ -72,145 +72,92 @@ def gj(xt, Y, Models):
         return Y[:, 0] + Y[:, 1] + Y[:, 2] + Y[:, 3] + Y[:, 4] + Y[:, 5]
 
 
-
 j = {
-"fvarsX": [
-    {
-        "name": "a",
-        "type": "continuous",
-        "domain": [
-            -200.0,
-            200.0
-        ]
-    },{
-        "name": "b",
-        "type": "continuous",
-        "domain": [
-            -200.0,
-            200.0
-        ]
+
+    "status": {
+        "value": {
+            "fvarsX": [
+                {
+                    "name": "a",
+                    "type": "continuous",
+                    "domain": [
+                        -200.0,
+                        200.0
+                    ]
+                },
+                {
+                    "name": "b",
+                    "type": "continuous",
+                    "domain": [
+                        -200.0,
+                        200.0
+                    ]
+                }
+            ],
+            "fvarsY": [
+                {
+                    "name": "out1",
+                    "type": "continuous",
+                    "domain": []
+                }
+            ],
+            "acquisition_optimizer_type": "lbfgsb",
+            "x": [
+                [
+                    34, 32
+                ],
+                [
+                    12, 65
+                ],
+                [
+                    8, 43
+                ],
+                [
+                    12, 12
+                ],
+                [
+                    42, 24
+                ],
+                [
+                    18, 30
+                ]
+
+            ],
+            "b_in": [
+                [
+                    0,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1,
+                    1
+                ],
+                [
+                    3,
+                    2,
+                    1
+                ],
+                [
+                    3,
+                    4,
+                    1
+                ],
+                [
+                    3,
+                    5,
+                    1
+                ]
+            ],
+            "b_best": [
+                3
+            ],
+            "delta": 3
+        }
     }
-],
-"fvarsY": [
-    {
-        "name": "out1",
-        "type": "continuous",
-        "domain": []
-    }
-],
-"acquisition_optimizer_type": "lbfgsb",
-"x": [
-    [
-        -10,1
-    ],
-    [
-        44,1
-    ],
-    [
-        -16,1
-    ],
-    [
-        -4,1
-    ],
-    [
-        10,1
-    ],
-    [
-        -160,1
-    ],
-    [
-        60,1
-    ],
-    [
-        2,1
-    ],
-    [
-        -2.34,1
-    ],
-    [
-        2.75,1
-    ],
-    [
-        0.20,1
-    ],
-    [
-        2.27,1
-    ],
-    [
-        0.2039585,1
-    ]
-],
-"b_in": [
-    [
-        0,
-        1,
-        1
-    ],
-    [
-        2,
-        1,
-        1
-    ],
-    [
-        3,
-        2,
-        1
-    ],
-    [
-        3,
-        4,
-        1
-    ],
-    [
-        3,
-        5,
-        1
-    ],
-    [
-        3,
-        6,
-        1
-    ],
-    [
-        7,
-        6,
-        1
-    ],
-    [
-        7,
-        8,
-        1
-    ],
-    [
-        7,
-        9,
-        1
-    ],
-    [
-        10,
-        7,
-        1
-    ],
-    [
-        10,
-        11,
-        1
-    ],
-    [
-        10,
-        12,
-        1
-    ]
-],
-"b_best": [
-    10
-],
-"boolean_test": True,
-"exploration": True,
-"delta": 3
 }
 
 
-
-def send_j():
+def get_msg():
     return j
